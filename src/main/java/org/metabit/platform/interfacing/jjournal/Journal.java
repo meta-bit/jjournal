@@ -108,14 +108,14 @@ public class Journal implements AutoCloseable
 
     /**
      * constructor, opening journal access within a namespace.
-     *  <p>
-     *> sd_journal_open_namespace() is similar to sd_journal_open() but takes an additional namespace parameter that specifies which journal namespace to operate on.
-     *> If specified as NULL the call is identical to sd_journal_open().
-     *> If non-NULL only data from the namespace identified by the specified parameter is accessed.
-     *> This call understands two additional flags:
-     *> if SD_JOURNAL_ALL_NAMESPACES is specified the namespace parameter is ignored and all defined namespaces are accessed simultaneously;
-     *> if SD_JOURNAL_INCLUDE_DEFAULT_NAMESPACE the specified namespace and the default namespace are accessed but no others (this flag has no effect when namespace is passed as NULL).
-     *> For details about journal namespaces see systemd-journald.service(8).
+     * <p>
+     * sd_journal_open_namespace() is similar to sd_journal_open() but takes an additional namespace parameter that specifies which journal namespace to operate on.
+     * If specified as NULL the call is identical to sd_journal_open().
+     * If non-NULL only data from the namespace identified by the specified parameter is accessed.
+     * This call understands two additional flags:
+     * if SD_JOURNAL_ALL_NAMESPACES is specified the namespace parameter is ignored and all defined namespaces are accessed simultaneously;
+     * if SD_JOURNAL_INCLUDE_DEFAULT_NAMESPACE the specified namespace and the default namespace are accessed but no others (this flag has no effect when namespace is passed as NULL).
+     * For details about journal namespaces see systemd-journald.service(8).
      * </p>
      *
      * @param namespace namespace to operate on
@@ -140,13 +140,13 @@ public class Journal implements AutoCloseable
     /**
      * constructor, opening journal access within a namespace.
      * <p>
-     *> sd_journal_open_namespace() is similar to sd_journal_open() but takes an additional namespace parameter that specifies which journal namespace to operate on.
-     *> If specified as NULL the call is identical to sd_journal_open().
-     *> If non-NULL only data from the namespace identified by the specified parameter is accessed.
-     *> This call understands two additional flags:
-     *> if SD_JOURNAL_ALL_NAMESPACES is specified the namespace parameter is ignored and all defined namespaces are accessed simultaneously;
-     *> if SD_JOURNAL_INCLUDE_DEFAULT_NAMESPACE the specified namespace and the default namespace are accessed but no others (this flag has no effect when namespace is passed as NULL).
-     *> For details about journal namespaces see systemd-journald.service(8).
+     * sd_journal_open_namespace() is similar to sd_journal_open() but takes an additional namespace parameter that specifies which journal namespace to operate on.
+     * If specified as NULL the call is identical to sd_journal_open().
+     * If non-NULL only data from the namespace identified by the specified parameter is accessed.
+     * This call understands two additional flags:
+     * if SD_JOURNAL_ALL_NAMESPACES is specified the namespace parameter is ignored and all defined namespaces are accessed simultaneously;
+     * if SD_JOURNAL_INCLUDE_DEFAULT_NAMESPACE the specified namespace and the default namespace are accessed but no others (this flag has no effect when namespace is passed as NULL).
+     * For details about journal namespaces see systemd-journald.service(8).
      * </p>
      *
      * @param namespace namespace to operate on
@@ -364,7 +364,7 @@ public class Journal implements AutoCloseable
      * @param numEntriesToSkip positive to skip forward, negative to skip backwards.
      * @return difference between requested skip steps, and actual ones.
      *         if the move was performed as asked, this is 0.
-     *         if the move was only partially performed, because the cursor hit the end, this is >0 and the number of "missing skips"
+     *         if the move was only partially performed, because the cursor hit the end, this is &gt;0 and the number of "missing skips"
      * @throws org.metabit.platform.interfacing.jjournal.JJournalException if the movement failed entirely
      *
      * usage e.g. while (journal.skip(SKIPAHEADVALUE) == 0) ...
@@ -1252,7 +1252,7 @@ public class Journal implements AutoCloseable
      *
      * @return true if runtime journal files have been found.
      * @throws org.metabit.platform.interfacing.jjournal.JJournalException  when things go wrong.
-     * --> directory /run/systemd/journal/
+     * see directory /run/systemd/journal/
      */
     public boolean hasRuntimeFiles() throws JJournalException
         {
@@ -1265,7 +1265,7 @@ public class Journal implements AutoCloseable
      *
      * @return true if persistent journal files have been found.
      * @throws org.metabit.platform.interfacing.jjournal.JJournalException when things go wrong.
-     * --> directory /var/log/journal/
+     * see directory /var/log/journal/
      */
     public boolean hasPersistentFiles() throws JJournalException
         {

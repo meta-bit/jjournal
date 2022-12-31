@@ -18,14 +18,9 @@ The maven artifact vector is
 <dependency>
 	<groupId>org.metabit.platform.interfacing</groupId>
 	<artifactId>jjournal</artifactId>
+	<version>0.3.0</version>
 </depencency>
 ```
-As value for <version>, use most recent version.
-
-## Download
-Download links
-* SSH clone URL: ssh://git@git.jetbrains.space/metabit/jjournal/jjournal.git
-* HTTPS clone URL: https://git.jetbrains.space/metabit/jjournal/jjournal.git
 
 ## Prerequisites
 

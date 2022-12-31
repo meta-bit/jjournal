@@ -81,6 +81,17 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>3.4.0</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<!-- two lines to keep JavaDoc from getting confused by the Java 9 module-info.file. -->
+					<detectJavaApiLink>false</detectJavaApiLink>
+					<source>8</source>
+					<!-- implementation details - permanently not for documentation -->
+					<excludePackageNames>
+						org.metabit.platform.interfacing.jjournal.NativeJournal
+						:org.metabit.platform.interfacing.jnrffi.JNRFFI_SD_ID128_T
+					</excludePackageNames>
+				</configuration>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
@@ -96,21 +107,22 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
+				<version>3.10.1</version>
 				<!-- defaults for compile and testCompile -->
 				<configuration>
 					<!-- jdkToolchain required when JAVA_HOME is JDK 9 or above -->
+					<!--
 					<jdkToolchain>
 						<version>[1.8,9)</version>
 					</jdkToolchain>
+					-->
 					<source>1.8</source>
 					<target>1.8</target>
-					<release>8</release>
+					<!-- release>8</release -->
 					<!-- activate temporarily during development for a confused IDE to work with
 										<source>9</source>
 										<target>9</target>
 					-->
-
 					<showDeprecation>true</showDeprecation>
 					<showWarnings>true</showWarnings>
 				</configuration>
@@ -123,7 +135,7 @@
 							<jdkToolchain>
 								<version>9</version>
 							</jdkToolchain>
-							<release>9</release>
+							<!-- release>9</release -->
 						</configuration>
 					</execution>
 					<execution>
@@ -193,5 +205,11 @@
 			<url>https://maven.pkg.jetbrains.space/metabit/p/jjournal/maven</url>
 		</repository>
 	</repositories>
-
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>meta-bit</name>
+			<url>https://maven.pkg.github.com/meta-bit/jjournal</url>
+		</repository>
+	</distributionManagement>
 </project>
