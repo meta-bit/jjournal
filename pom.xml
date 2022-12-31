@@ -58,24 +58,6 @@
 		</dependency>
 	</dependencies>
 
-
-	<!-- deployment only configuration settings -->
-<!--
-	<distributionManagement>
-		<snapshotRepository>
-			<id>sonatype-nexus-snapshots</id>
-			<name>Sonatype Nexus Snapshots</name>
-			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>sonatype-nexus-staging</id>
-			<name>Nexus Release Repository</name>
-			<url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-		downloadUrl>https://oss.sonatype.org/content/groups/public/org/metabit/platform/interfacing/jjournal</downloadUrl
-	</distributionManagement>
--->
-
 	<build>
 		<plugins>
 			<!-- deployment only configuration settings -->
@@ -158,23 +140,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- it seems that signing needs separate configuration?! -->
-			<!--
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-gpg-plugin</artifactId>
-				<version>1.6</version>
-				<executions>
-					<execution>
-						<id>sign-artifacts</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>sign</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		-->
 
 			<!-- for deploying to Maven Central -->
 			<plugin>
@@ -222,48 +187,6 @@
 
 		</plugins>
 	</build>
-
-	<!-- activate signing, but only for release deployment -->
-<!--
-	<profiles>
-		<profile>
-			<id>release-sign-artifacts</id>
-			<activation>
-				<property>
-					<name>performRelease</name>
-					<value>true</value>
-				</property>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
-	<scm>
-		<url>http://opensource.metabit.com/tags/mConfigBase-0.5.0-SNAPSHOT</url>
-		<connection>scm:git:git://marcus.metabit.com:7999/ml/mconfigbase.git</connection>
-		- scm:git:svn://192.168.11.9/metabit_library/source/mLib_Utils/tags/mConfigBase-0.4.1-SNAPSHOT -
-		<developerConnection>scm:svn:svn://192.168.11.9/metabit_library/source/mLib_Utils/</developerConnection>
-	</scm>
-		-->
-	<!-- modules>
-		<module>../mLib_Utils_jsonconfig</module>
-	</modules -->
-
 	<repositories>
 		<repository>
 			<id>space-maven</id>
