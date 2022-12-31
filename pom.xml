@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) metabit 2022.
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.metabit.platform.interfacing</groupId>
+	<artifactId>jjournal</artifactId>
+	<version>0.3.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>Java journald API</name>
+	<description>
+		Java API for reading systemd-journald logfiles
+	</description>
+	<url>https://metabit.org/</url>
+	<licenses>
+		<license>
+			<name>CC-BY-ND 4.0</name>
+			<url>https://creativecommons.org/licenses/by-nd/4.0/</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<organization>
+		<name>metabit</name>
+		<url>https://metabit.com/</url>
+	</organization>
+	<developers>
+		<developer>
+			<name>J.Wilkes</name>
+			<!-- email => spam risk. please contact via website -->
+			<organization>metabit</organization>
+			<organizationUrl>https://metabit.org/</organizationUrl>
+		</developer>
+	</developers>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.github.jnr</groupId>
+			<artifactId>jnr-ffi</artifactId>
+			<version>2.2.13</version>
+		</dependency>
+		<!-- there may be a transitive dependency to org.ow2.asm:*
+		     see https://github.com/jnr/jnr-ffi/issues/193 - as of 2022-07, this is the case.
+		     -->
+		<!-- testing framework -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.9.0</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+
+	<!-- deployment only configuration settings -->
+<!--
+	<distributionManagement>
+		<snapshotRepository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>sonatype-nexus-staging</id>
+			<name>Nexus Release Repository</name>
+			<url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+		downloadUrl>https://oss.sonatype.org/content/groups/public/org/metabit/platform/interfacing/jjournal</downloadUrl
+	</distributionManagement>
+-->
+
+	<build>
+		<plugins>
+			<!-- deployment only configuration settings -->
+
+			<!-- Generates a source code JAR during package -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Generates JavaDocs during package stage -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.4.0</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- allow for module-info while still compiling it in -->
+			<!-- Ensure compilation is done under Java 8 in all environments -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<!-- defaults for compile and testCompile -->
+				<configuration>
+					<!-- jdkToolchain required when JAVA_HOME is JDK 9 or above -->
+					<jdkToolchain>
+						<version>[1.8,9)</version>
+					</jdkToolchain>
+					<source>1.8</source>
+					<target>1.8</target>
+					<release>8</release>
+					<!-- activate temporarily during development for a confused IDE to work with
+										<source>9</source>
+										<target>9</target>
+					-->
+
+					<showDeprecation>true</showDeprecation>
+					<showWarnings>true</showWarnings>
+				</configuration>
+				<executions>
+					<execution>
+						<id>default-compile</id>
+						<configuration>
+							<!-- compile everything to ensure module-info contains right entries -->
+							<!-- required when JAVA_HOME is JDK 8 or below -->
+							<jdkToolchain>
+								<version>9</version>
+							</jdkToolchain>
+							<release>9</release>
+						</configuration>
+					</execution>
+					<execution>
+						<id>base-compile</id>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+						<!-- recompile everything for target VM except the module-info.java -->
+						<configuration>
+							<excludes>
+								<exclude>module-info.java</exclude>
+							</excludes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- it seems that signing needs separate configuration?! -->
+			<!--
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		-->
+
+			<!-- for deploying to Maven Central -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+				</configuration>
+			</plugin>
+			<!-- for header in all .java files -->
+			<plugin>
+				<groupId>com.mycila</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<header>NOTICE</header>
+					<aggregate>true</aggregate>
+					<includes>
+						<include>**/*.java</include>
+					</includes>
+					<excludes>
+						<exclude>**/package-info.java</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
+			<!-- GPL'd testing tool -->
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<!-- version>3.1.12.2</version -->
+				<version>4.2.3</version>
+				<dependencies>
+					<!-- overwrite dependency on spotbugs if you want to specify the version of spotbugs -->
+					<!-- which we do, since recent versions of "spotbugs" refuse to work with e.g. Java JDK 9 -->
+					<dependency>
+						<groupId>com.github.spotbugs</groupId>
+						<artifactId>spotbugs</artifactId>
+						<version>4.0.0</version>
+						<!-- <version>4.2.3</version> -->
+					</dependency>
+				</dependencies>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<!-- activate signing, but only for release deployment -->
+<!--
+	<profiles>
+		<profile>
+			<id>release-sign-artifacts</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	<scm>
+		<url>http://opensource.metabit.com/tags/mConfigBase-0.5.0-SNAPSHOT</url>
+		<connection>scm:git:git://marcus.metabit.com:7999/ml/mconfigbase.git</connection>
+		- scm:git:svn://192.168.11.9/metabit_library/source/mLib_Utils/tags/mConfigBase-0.4.1-SNAPSHOT -
+		<developerConnection>scm:svn:svn://192.168.11.9/metabit_library/source/mLib_Utils/</developerConnection>
+	</scm>
+		-->
+	<!-- modules>
+		<module>../mLib_Utils_jsonconfig</module>
+	</modules -->
+
+	<repositories>
+		<repository>
+			<id>space-maven</id>
+			<url>https://maven.pkg.jetbrains.space/metabit/p/jjournal/maven</url>
+		</repository>
+	</repositories>
+
+</project>
