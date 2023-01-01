@@ -25,11 +25,11 @@ import static org.metabit.platform.interfacing.jjournal.JJournalException.ErrorC
 
 /**
  * jjournal main class for systemd journal read access.
- * <br/>
+ * <br>
  * Instantiate with the appropriate set of access flags,
  * then use its member functions to select, read, iterate, filter etc.
  * systemd journal entries.
- * <br/>
+ * <br>
  * This library reflects the concepts used in systemd journals,
  * especially way they designed cursor and filters.
  *

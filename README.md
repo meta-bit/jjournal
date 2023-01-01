@@ -1,4 +1,5 @@
 [![Maven Package](https://github.com/meta-bit/jjournal/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/meta-bit/jjournal/actions/workflows/maven-publish.yml)
+![CodeQL](https://github.com/meta-bit/jjournal/workflows/CodeQL/badge.svg?branch=main)
 
 # jjournal
 Java API for reading systemd-journald logfiles
