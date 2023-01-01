@@ -1,6 +1,6 @@
 /**
  * JJournal is an original work by metabit GmbH.
- *
+ * <br/>
  * It is dual-licensed under GPL-3 for non-commercial use.
  * For commercial use, obtain an Apache-2.0-style license via (free) registration from metabit.
  * See LICENSE file for details.
@@ -25,11 +25,11 @@ import static org.metabit.platform.interfacing.jjournal.JJournalException.ErrorC
 
 /**
  * jjournal main class for systemd journal read access.
- *
+ * <br/>
  * Instantiate with the appropriate set of access flags,
  * then use its member functions to select, read, iterate, filter etc.
  * systemd journal entries.
- *
+ * <br/>
  * This library reflects the concepts used in systemd journals,
  * especially way they designed cursor and filters.
  *
@@ -1304,12 +1304,12 @@ public class Journal implements AutoCloseable
      *
      *
      * man sd_journal_send:
-     * <q>
+     * <CITE>
      * ...The variable name must be in uppercase and consist only of characters,
      *        numbers and underscores, and may not begin with an underscore.[...] A number
      *        of well-known fields are defined, see systemd.journal-fields(7) for details, but
      *        additional application defined fields may be used.
-     * </q>
+     * </CITE>
      *
      * This omits specifying which charset this refers to; so "ÖRTLICHKEIT" would be valid too.
      * But judging from all examples, and the source code, interpretation of this library is

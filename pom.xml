@@ -8,33 +8,29 @@
 
 	<groupId>org.metabit.platform.interfacing</groupId>
 	<artifactId>jjournal</artifactId>
-	<version>0.3.0</version>
+	<version>0.3.1</version>
 	<packaging>jar</packaging>
 	<name>Java journald API</name>
 	<description>
 		Java API for reading systemd-journald logfiles
 	</description>
-	<url>https://metabit.org/</url>
+	<url>https://github.com/meta-bit/jjournal</url>
 	<licenses>
 		<license>
-			<name>CC-BY-ND 4.0</name>
-			<url>https://creativecommons.org/licenses/by-nd/4.0/</url>
+			<name>GPL-3</name>
+			<url>https://www.gnu.org/licenses/gpl-3.0.en.html</url>
+			<distribution>repo</distribution>
+		</license>
+		<license>
+			<name>APL after free registration</name>
+			<url>https://www.metabit.com/software/registration/</url>
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
 	<organization>
 		<name>metabit</name>
-		<url>https://metabit.com/</url>
+		<url>https://www.metabit.com/</url>
 	</organization>
-	<developers>
-		<developer>
-			<name>J.Wilkes</name>
-			<!-- email => spam risk. please contact via website -->
-			<organization>metabit</organization>
-			<organizationUrl>https://metabit.org/</organizationUrl>
-		</developer>
-	</developers>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
