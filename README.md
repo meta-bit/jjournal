@@ -22,7 +22,7 @@ The maven artifact vector is
 <dependency>
 	<groupId>org.metabit.platform.interfacing</groupId>
 	<artifactId>jjournal</artifactId>
-	<version>x.y.z</version>
+	<version>0.3.1</version>
 </depencency>
 ```
 Latest version:
