@@ -14,16 +14,19 @@ It is implemented as a JNR wrapper for the standard C systemd-library interface.
 * JNR FFI
 * JDK 8
 # Getting Started
-## Maven
-### For use with Java 8+
+## Installation
+
+### Maven
 The maven artifact vector is
 ```
 <dependency>
 	<groupId>org.metabit.platform.interfacing</groupId>
 	<artifactId>jjournal</artifactId>
-	<version>0.3.0</version>
+	<version>x.y.z</version>
 </depencency>
 ```
+Latest version:
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.meta-bit/jjournal/badge.svg)](https://search.maven.org/artifact/org.metabit.platform.interfacing/jjournal)
 
 ## Prerequisites
 
