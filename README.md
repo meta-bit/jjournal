@@ -18,7 +18,7 @@ It is implemented as a JNR wrapper for the standard C systemd-library interface.
 ### For use with Java 8+
 The maven artifact vector is
 
-```
+```maven
 <dependency>
 	<groupId>org.metabit.platform.interfacing</groupId>
 	<artifactId>jjournal</artifactId>
@@ -31,7 +31,7 @@ The maven artifact vector is
 The runtime system has to have `libsystemd` installed and accessible via Java library path.
 
 ## Examples
-```
+```java
  import org.metabit.platform.interfacing.jjournal.Journal;
  ...
  // print messages for most recent minute from the journal of the current user
