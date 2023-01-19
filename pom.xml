@@ -5,7 +5,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.metabit.platform.interfacing</groupId>
+	<artifactId>jjournal</artifactId>
+	<version>0.3.3</version>
+	<packaging>jar</packaging>
 	<name>Java journald API</name>
+	<description>
+		Java API for reading systemd-journald logfiles
+	</description>
 	<url>https://github.com/meta-bit/jjournal</url>
 	<licenses>
 		<license>
@@ -19,35 +27,16 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
-	<description>
-		Java API for reading systemd-journald logfiles
-	</description>
-	<groupId>org.metabit.platform.interfacing</groupId>
-	<artifactId>jjournal</artifactId>
-	<version>0.3.2-SNAPSHOT</version>
 	<organization>
 		<name>metabit</name>
-		<url>https://metabit.com/</url>
+		<url>https://www.metabit.com/</url>
 	</organization>
-	<developers>
-		<developer>
-			<name>JW</name>
-			<!-- email => spam risk. please contact via website -->
-			<organization>metabit</organization>
-			<organizationUrl>https://metabit.org/</organizationUrl>
-		</developer>
-	</developers>
-	<packaging>jar</packaging>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<repository-owner>meta-bit</repository-owner>
-		<repository-name>jjournal</repository-name>
-		<branch-name>main</branch-name>
-		<github.global.server>github</github.global.server>
 	</properties>
 
 	<dependencies>
+
 		<dependency>
 			<groupId>com.github.jnr</groupId>
 			<artifactId>jnr-ffi</artifactId>
@@ -78,25 +67,16 @@
 					<execution>
 						<id>attach-sources</id>
 						<goals>
-							<goal>jar-no-fork</goal>
+							<goal>jar</goal>
 						</goals>
 					</execution>
 				</executions>
 			</plugin>
-
 			<!-- Generates JavaDocs during package stage -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>3.4.0</version>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
 				<configuration>
 					<encoding>UTF-8</encoding>
 					<!-- two lines to keep JavaDoc from getting confused by the Java 9 module-info.file. -->
@@ -108,6 +88,14 @@
 						:org.metabit.platform.interfacing.jnrffi.JNRFFI_SD_ID128_T
 					</excludePackageNames>
 				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
 			<!-- allow for module-info while still compiling it in -->
@@ -203,36 +191,9 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-
-
-			<plugin>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<version>2.8.2</version>
-				<configuration>
-					<altDeploymentRepository>
-						internal.repo::default::file://${project.build.directory}/mvn-artifact
-					</altDeploymentRepository>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
-
-
-	<!-- primary distribution to github -->
-	<scm>
-		<url>https://github.com/${repository-owner}/${repository-name}.git</url>
-		<connection>scm:git:git@github.com:${repository-owner}/${repository-name}.git</connection>
-		<developerConnection>scm:git:git@github.com:${repository-owner}/${repository-name}.git</developerConnection>
-	</scm>
 	<repositories>
-		<repository>
-			<id>github-maven</id>
-			<url>https://github.com/${repository-owner}/${repository-name}/${branch-name}</url>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
-		</repository>
 		<repository>
 			<id>space-maven</id>
 			<url>https://maven.pkg.jetbrains.space/metabit/p/jjournal/maven</url>
@@ -240,20 +201,9 @@
 	</repositories>
 	<distributionManagement>
 		<repository>
-			<id>ossrh</id>
-			<name>Central Repository OSSRH</name>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+			<id>github</id>
+			<name>meta-bit</name>
+			<url>https://maven.pkg.github.com/meta-bit/jjournal</url>
 		</repository>
-		<snapshotRepository>
-			<id>sonatype-nexus-snapshots</id>
-			<name>Sonatype Nexus Snapshots</name>
-			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<!-- repository>
-			<id>sonatype-nexus-staging</id>
-			<name>Nexus Release Repository</name>
-			<url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository -->
-		<downloadUrl>https://github.com/meta-bit/jjournal</downloadUrl>
 	</distributionManagement>
 </project>

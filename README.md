@@ -18,12 +18,13 @@ It is implemented as a JNR wrapper for the standard C systemd-library interface.
 
 ### Maven
 The maven artifact vector is
-```
+
+```maven
 <dependency>
 	<groupId>org.metabit.platform.interfacing</groupId>
 	<artifactId>jjournal</artifactId>
 	<version>0.3.1</version>
-</depencency>
+</dependency>
 ```
 Latest version:
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.meta-bit/jjournal/badge.svg)](https://search.maven.org/artifact/org.metabit.platform.interfacing/jjournal)
@@ -33,7 +34,7 @@ Latest version:
 The runtime system has to have `libsystemd` installed and accessible via Java library path.
 
 ## Examples
-```
+```java
  import org.metabit.platform.interfacing.jjournal.Journal;
  ...
  // print messages for most recent minute from the journal of the current user
