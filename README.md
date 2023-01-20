@@ -1,4 +1,4 @@
-[![Maven Package](https://github.com/meta-bit/jjournal/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/meta-bit/jjournal/actions/workflows/maven-publish.yml)
+[![Maven Package](https://github.com/meta-bit/jjournal/actions/workflows/maven-build.yml/badge.svg)](https://github.com/meta-bit/jjournal/actions/workflows/maven-build.yml)
 ![CodeQL](https://github.com/meta-bit/jjournal/workflows/CodeQL/badge.svg?branch=main)
 
 # jjournal
