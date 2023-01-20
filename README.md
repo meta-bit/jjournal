@@ -9,7 +9,8 @@ Java API for reading systemd-journald logfiles
 jjournal (AKA libjournal-java-reader) is a library for reading **systemd journals** with Java.
 
 systemd has become a standard base component in many Linux distributions.
-Its logging is not using files in /var/log anymore, it uses a specific, internal log database format. Accessing the logs, called "journals", can be done via the commandline tool `journalctl`.
+Its centralised logging is not using files in /var/log anymore, it uses a specific, internal log database format. 
+Accessing the logs, called "journals", can be done via the commandline tool `journalctl`.
 For programmatic access to these journals, though, there wasn't much to be found, save for the systemd C library itself.
 
 Hence this library, which allows you to access these logs/journals from Java.
@@ -17,7 +18,7 @@ It provides a number of filtering and accessing facilities, retaining the specif
 
 ## Dependencies
 * JNR FFI
-* JDK 8
+* JDK 8 and up
 # Getting Started
 ## Installation
 
@@ -38,6 +39,18 @@ Latest version:
 ## Prerequisites
 
 The runtime system has to have `libsystemd` installed and accessible via Java library path.
+
+## Usage
+
+1. Import the Journal class. 
+2. Create an instance using the constructor flags indicating which systemd journal to access, and how.
+3. use member functions to access the journal.
+4. .close() the journal after use.
+
+journald features like cursor, field lists, filters are implemented; additional helper functions
+like foreachInTimerange(), moveForwardUntilTime() etc. are available as well.
+
+(TODO: explain systemd concepts / link to explanation)
 
 ## Examples
 
