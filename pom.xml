@@ -8,11 +8,11 @@
 
 	<groupId>org.metabit.platform.interfacing</groupId>
 	<artifactId>jjournal</artifactId>
-	<version>0.3.3</version>
+	<version>0.3.4</version>
 	<packaging>jar</packaging>
 	<name>Java journald API</name>
 	<description>
-		Java API for reading systemd-journald logfiles
+		Java API for reading systemd-journald logs
 	</description>
 	<url>https://github.com/meta-bit/jjournal</url>
 	<licenses>
