@@ -50,7 +50,7 @@ The runtime system has to have `libsystemd` installed and accessible via Java li
 journald features like cursor, field lists, filters are implemented; additional helper functions
 like foreachInTimerange(), moveForwardUntilTime() etc. are available as well.
 
-(TODO: explain systemd concepts / link to explanation)
+If you are unfamiliar with systemd journal concepts, see doc/about_systemd_journals.md or general documentation about it.
 
 ## Examples
 
@@ -71,8 +71,6 @@ print messages for most recent minute from the journal of the current user:
         });
     }
 ```
-
-
 
 
 ## Deployment
