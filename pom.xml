@@ -8,7 +8,7 @@
 
 	<groupId>org.metabit.platform.interfacing</groupId>
 	<artifactId>jjournal</artifactId>
-	<version>0.3.5</version>
+	<version>0.3.6-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Java journald API</name>
 	<description>
@@ -31,6 +31,10 @@
 		<name>metabit</name>
 		<url>https://www.metabit.com/</url>
 	</organization>
+	<scm>
+		<developerConnection>scm:git:https://github.com/meta-bit/jjournal.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -191,19 +195,55 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+
+			<!-- for signing releases -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>3.0.1</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+						<configuration>
+							<keyname>${gpg.keyname}</keyname>
+							<passphraseServerId>${gpg.keyname}</passphraseServerId>
+							<executable>/usr/bin/gpg</executable>
+							<useAgent>false</useAgent>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- optional, instead of maven deploy -->
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.8</version>
+				<extensions>true</extensions>
+				<!-- we're on the pre-2021 insteance -->
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
-	<repositories>
-		<repository>
-			<id>space-maven</id>
-			<url>https://maven.pkg.jetbrains.space/metabit/p/jjournal/maven</url>
-		</repository>
-	</repositories>
 	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>http://oss.sonatype.org/content/repositories/snapshots/</url>
+		</snapshotRepository>
 		<repository>
-			<id>github</id>
-			<name>meta-bit</name>
-			<url>https://maven.pkg.github.com/meta-bit/jjournal</url>
+			<id>ossrh</id>
+			<name>Nexus Release Repository</name>
+			<url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
+		<downloadUrl>https://github.com/meta-bit/mutils</downloadUrl>
 	</distributionManagement>
 </project>
