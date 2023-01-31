@@ -29,7 +29,7 @@ The maven artifact vector is
 <dependency>
 	<groupId>org.metabit.platform.interfacing</groupId>
 	<artifactId>jjournal</artifactId>
-	<version>0.3.4</version>
+	<version>0.3.5</version>
 </dependency>
 ```
 
