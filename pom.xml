@@ -11,9 +11,11 @@
 	<packaging>jar</packaging>
 	<name>Java journald API</name>
 	<description>
-		Java API for reading systemd-journald logs
+		Java API for reading systemd-journald logs.
+		systemd has a specific journal system for all logs. For  access to these logs from commandline,
+		there is the journalctl executable. This library provides programmatic access the the logs.
 	</description>
-	<url>https://github.com/meta-bit/jjournal</url>
+	<url>https://github.com/meta-bit/jjournal/</url>
 	<licenses>
 		<license>
 			<name>GPL-3</name>
@@ -31,8 +33,10 @@
 		<url>https://www.metabit.com/</url>
 	</organization>
 	<scm>
+		<connection>scm:git:https://github.com/meta-bit/jjournal.git</connection>
 		<developerConnection>scm:git:https://github.com/meta-bit/jjournal.git</developerConnection>
 		<tag>jjournal-0.3.6</tag>
+		<url>https://github.com/meta-bit/jjournal/</url>
 	</scm>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -223,11 +227,10 @@
 				<artifactId>nexus-staging-maven-plugin</artifactId>
 				<version>1.6.8</version>
 				<extensions>true</extensions>
-				<!-- we're on the pre-2021 insteance -->
 				<configuration>
 					<serverId>ossrh</serverId>
 					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
-					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+					<autoReleaseAfterClose>false</autoReleaseAfterClose>
 				</configuration>
 			</plugin>
 		</plugins>
