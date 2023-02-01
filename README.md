@@ -34,7 +34,7 @@ The maven artifact vector is
 ```
 
 Latest version:
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.meta-bit/jjournal/badge.svg)](https://search.maven.org/artifact/org.metabit.platform.interfacing/jjournal)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.metabit.platform.interfacing/jjournal/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.metabit.platform.interfacing/jjournal)
 
 ## Prerequisites
 
